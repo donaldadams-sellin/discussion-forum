@@ -40,8 +40,3 @@ export function getUser() {
     // otherwise return null.
     return token ? JSON.parse(atob(token.split('.')[1])).user : null;
 }
-
-export async function checkToken(){
-    const dateStr = await usersAPI.checkToken();
-    return new Date(dateStr);
-}

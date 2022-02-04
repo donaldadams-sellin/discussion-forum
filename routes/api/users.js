@@ -9,7 +9,4 @@ router.post('/', usersCtrl.create);
 //POST to /api/users/login
 router.post('/login', usersCtrl.login);
 
-//GET to /api/users/check-token
-router.get('/check-token', ensureLoggedIn, usersCtrl.checkToken);
-
 module.exports = router;
