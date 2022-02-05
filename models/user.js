@@ -18,18 +18,22 @@ const userSchema = new Schema({
         trim: true,
         minLength: 3,
         required: true
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
     }
 }, {
     timestamps: true,
     toJSON: {
-        transform: function(doc, ret){
+        transform: function (doc, ret) {
             delete ret.password;
             return ret;
         }
     }
 });
 
-userSchema.pre('save', async function(next){
+userSchema.pre('save', async function (next) {
     if (!this.isModified('password')) return next();
     //update password with computed hash
     this.password = await bcrypt.hash(this.password, SALT_ROUNDS);

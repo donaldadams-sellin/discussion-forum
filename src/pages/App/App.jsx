@@ -14,7 +14,7 @@ export default function App() {
         <NavBar user={user} setUser={setUser} />
         <Routes>
           <Route path="/" element={<TopicListPage />} />
-          <Route path="/login" element={<AuthPage />} />
+          <Route path="/login" element={<AuthPage setUser={setUser} />} />
         </Routes>
        </>
 
