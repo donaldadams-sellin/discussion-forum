@@ -1,7 +1,10 @@
 import './TopicComponent.css';
 
-export default function TopicComponent(){
+export default function TopicComponent({topic}){
     return(
-        <p>TopicComponent</p>
+        <div className="TopicComponent">
+            <p className="TopicName">{topic.name}</p>
+            <p className="TopicDescription">{topic.description}</p>
+        </div>
     )
 }

@@ -12,10 +12,12 @@ export default function App() {
     <main className="App">
       <>
         <NavBar user={user} setUser={setUser} />
+        <div className="content">
         <Routes>
           <Route path="/" element={<TopicListPage />} />
           <Route path="/login" element={<AuthPage setUser={setUser} />} />
         </Routes>
+        </div>
        </>
 
     </main>
