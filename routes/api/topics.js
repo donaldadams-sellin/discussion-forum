@@ -6,6 +6,7 @@ const topicsCtrl = require('../../controllers/api/topics');
 
 //GET request to /api/topics
 router.get('/', topicsCtrl.index);
+router.get('/:id', topicsCtrl.detail)
 
 
 module.exports =router;
