@@ -19,19 +19,9 @@ const threadSchema = new Schema({
     timestamps: true,
     toJSON:{
         virtuals: true
-    }
+    },
+    toObject:{virtuals: true}
 });
-
-threadSchema.methods.getUserName = async function(){
-    const userName = await User.findById(this.user).name;
-    return userName;
-}
-
-threadSchema.virtual('userName').get(function(){
-    const userName = this.getUserName();
-    console.log(userName);
-    return userName;
-})
 
 threadSchema.statics.makeThread = function(userId, topicId, title, content){
    return this.create({
