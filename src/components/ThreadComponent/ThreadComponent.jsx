@@ -1,7 +1,10 @@
 import './ThreadComponent.css';
 
-export default function ThreadComponent(){
+export default function ThreadComponent({thread}){
     return(
-        <p>ThreadComponent</p>
+        <div>
+            <p>{thread.title}</p>
+            
+        </div>
     )
 }

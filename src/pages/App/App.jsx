@@ -28,7 +28,7 @@ export default function App() {
         <div className="content">
           <Routes>
             <Route path="/" element={<TopicListPage topics={topics} />} />
-            <Route path='/:id' element={<TopicPage topics={topics}/>} />
+            <Route path='/:id' element={<TopicPage user={user} topics={topics}/>} />
             <Route path="/login" element={<AuthPage setUser={setUser} />} />
           </Routes>
         </div>

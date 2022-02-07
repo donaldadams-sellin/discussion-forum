@@ -23,10 +23,20 @@ code {
   width: 100vw;
 }
 
+.form-container{
+  padding: 10px 0px;
+}
+
+form{
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
 .content{
   padding-top: 50px;
+  height: 100vw;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   position: relative;
 }
