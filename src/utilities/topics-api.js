@@ -8,6 +8,5 @@ export function getTopics(){
 
 export async function getThreads(id){
     const threads = await sendRequest(`${BASE_URL}/${id}`);
-    console.log(threads);
     return threads
 }

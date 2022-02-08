@@ -22,7 +22,7 @@ export default function ThreadPage({user}){
         <div>
             <div className="thread-bar">
                 <span className="thread-name">{thread.title}</span>
-               { user && <button onClick={()=>setShowForm(!showForm)}>ADD THREAD</button> }
+               { user && <button onClick={()=>setShowForm(!showForm)}>ADD REPLY</button> }
             </div>
             {showForm && <ReplyForm thread={thread} setThread={setThread} />}
             {thread.replies.map((reply, idx)=> <p>{reply.content}</p>)}

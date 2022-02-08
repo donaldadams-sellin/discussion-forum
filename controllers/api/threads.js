@@ -4,17 +4,29 @@ const User = require('../../models/user');
 module.exports = {
     create, 
     show,
+    delete: deleteThread,
     createReply
 }
 
 async function show(req, res){
     const thread = await Thread.findById(req.params.id).populate({path:'replies', populate:{path: 'user', select:'name'}})
-    res.json(thread)
+    res.json(thread);
 }
 
 async function create(req, res) {
     const newThread = await Thread.makeThread(req.user._id, req.body.topicId, req.body.title, req.body.content);
+     await newThread.populate('user', 'name');
     res.json(newThread);
+}
+
+async function deleteThread(req, res){
+    const thread = await Thread.findById(req.params.id).populate('user');
+    const user = await User.findById(req.user._id);
+    if(user.equals(thread.user) || user.isAdmin){
+        await thread.delete();
+    }
+    const threads = await Thread.find({topic: thread.topic}).populate('user', 'name');
+    res.json(threads);
 }
 
 async function createReply(req, res){

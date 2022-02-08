@@ -16,7 +16,6 @@ export default function App() {
   useEffect(function () {
     async function getTopics() {
       const topics = await topicsAPI.getTopics();
-      console.log(topics)
       setTopics(topics);
     }
     getTopics();
