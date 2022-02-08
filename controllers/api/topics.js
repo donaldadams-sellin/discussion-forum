@@ -3,7 +3,7 @@ const Topic = require('../../models/topic');
 
 module.exports = {
     index,
-    detail
+    show
 };
 
 async function index(req, res){
@@ -11,7 +11,7 @@ async function index(req, res){
     res.json(topics)
 }
 
-async function detail(req, res){
-    const threads = await Thread.find({topic: req.params.id}).populate('user');
+async function show(req, res){
+    const threads = await Thread.find({topic: req.params.id}).populate('user', 'name');
     res.json(threads)
 }

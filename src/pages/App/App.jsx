@@ -7,6 +7,7 @@ import AuthPage from '../AuthPage/AuthPage';
 import NavBar from '../../components/NavBar/NavBar';
 import TopicListPage from '../TopicListPage/TopicListPage';
 import TopicPage from '../TopicPage/TopicPage';
+import ThreadPage from '../ThreadPage/ThreadPage';
 
 export default function App() {
   const [user, setUser] = useState(usersAPI.getUser());
@@ -29,6 +30,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<TopicListPage topics={topics} />} />
             <Route path='/:id' element={<TopicPage user={user} topics={topics}/>} />
+            <Route path='/:id/:threadId' element={<ThreadPage user={user}/>} />
             <Route path="/login" element={<AuthPage setUser={setUser} />} />
           </Routes>
         </div>

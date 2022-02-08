@@ -10,7 +10,7 @@ export default function TopicPage({ topics, user }) {
     const topic = topics.find((topic) => topic._id === id)
     const [threads, setThreads] = useState([]);
     const [showForm, setShowForm] = useState(false)
-
+    
     useEffect(function () {
         async function getThreads() {
             const threads = await topicsAPI.getThreads(topic._id);
@@ -18,17 +18,17 @@ export default function TopicPage({ topics, user }) {
             setThreads(threads);
         }
         getThreads();
-    }, []);
+    }, [topic]);
     return (
-        <div>
+        <div className="TopicPage">
             <div className="topic-bar">
-                <span className="topic-name">{topic.name}</span>
+                <span className="topic-name">{topic && topic.name}</span>
                { user && <button onClick={()=>setShowForm(!showForm)}>ADD THREAD</button> }
             </div>
             {showForm && <ThreadForm user={user} topic={topic} threads={threads} setThreads={setThreads} />}
-            <div>
+            
                 {threads.map((thread, idx) => <ThreadComponent thread={thread} key={idx} />)}
-            </div>
+           
         
         </div>
     )
