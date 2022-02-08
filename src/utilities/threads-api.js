@@ -20,3 +20,7 @@ export async function deleteThread(threadId){
 export async function addReply(replyData, threadId){
     return sendRequest(`${BASE_URL}/${threadId}/replies`, 'POST', replyData);
 }
+
+export async function deleteReply(replyId){
+    return sendRequest(`/api/replies/${replyId}`, 'DELETE');
+}

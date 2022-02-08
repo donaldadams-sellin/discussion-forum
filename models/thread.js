@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const topic = require('./topic');
+// const topic = require('./topic');
 const Schema = mongoose.Schema;
-const User = require('./user');
+// const User = require('./user');
 
 const replySchema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: 'User' },

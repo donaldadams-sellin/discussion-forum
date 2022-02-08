@@ -12,7 +12,8 @@ export default function ThreadPage({user}){
     const [showForm, setShowForm] = useState(false);
 
     async function deleteReply(replyId){
-        
+        const updatedThread = await threadsAPI.deleteReply(replyId);
+        setThread(updatedThread);
     }
 
     useEffect(function(){

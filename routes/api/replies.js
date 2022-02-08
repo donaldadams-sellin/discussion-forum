@@ -8,4 +8,7 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn');
 //POST request to /api/threads/:id/replies to make reply
 router.post('/threads/:id/replies', ensureLoggedIn, repliesCtrl.create);
 
+//DELETE request to /api/replies/:id to delete reply
+router.delete('/replies/:id', repliesCtrl.delete);
+
 module.exports = router;
