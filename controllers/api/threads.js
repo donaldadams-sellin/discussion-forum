@@ -5,9 +5,9 @@ module.exports = {
     create, 
     show,
     delete: deleteThread,
-    createReply
 }
 
+//thread top level functions
 async function show(req, res){
     const thread = await Thread.findById(req.params.id).populate({path:'replies', populate:{path: 'user', select:'name'}})
     res.json(thread);
@@ -27,11 +27,4 @@ async function deleteThread(req, res){
     }
     const threads = await Thread.find({topic: thread.topic}).populate('user', 'name');
     res.json(threads);
-}
-
-async function createReply(req, res){
-    const thread = await Thread.findById(req.params.id);
-    await thread.addReply(req.user._id, req.body.content);
-    await thread.populate({path:'replies', populate:{path: 'user', select:'name'}});
-    res.json(thread);
 }

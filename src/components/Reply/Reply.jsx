@@ -1,7 +1,11 @@
 import './Reply.css';
 
-export default function Reply(){
+export default function Reply({user, reply, deleteReply}){
     return(
-        <p>Reply</p>
+        <div className="Reply">
+            <p>{reply.content}</p>
+            <p>{reply.user.name}</p>
+            {user &&(user._id === reply.user._id &&<button onClick={()=>deleteReply(reply._id)} >DELETE</button>)}
+        </div>
     )
 }

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import * as threadsAPI from '../../utilities/threads-api';
 import './ThreadComponent.css';
 
 export default function ThreadComponent({ user, thread, deleteThread }) {
