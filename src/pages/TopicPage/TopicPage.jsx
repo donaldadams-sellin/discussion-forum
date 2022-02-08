@@ -7,9 +7,9 @@ import './TopicPage.css';
 
 export default function TopicPage({ topics, user }) {
     const { id } = useParams();
-    const topic = topics.find((topic) => topic._id === id)
+    const topic = topics.find((topic) => topic._id === id);
     const [threads, setThreads] = useState([]);
-    const [showForm, setShowForm] = useState(false)
+    const [showForm, setShowForm] = useState(false);
     
     useEffect(function () {
         async function getThreads() {

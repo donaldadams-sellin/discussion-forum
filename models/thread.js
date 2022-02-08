@@ -23,6 +23,7 @@ const threadSchema = new Schema({
     toObject:{virtuals: true}
 });
 
+//creates new thread from request
 threadSchema.statics.makeThread = function(userId, topicId, title, content){
    return this.create({
         user: userId,
@@ -30,6 +31,14 @@ threadSchema.statics.makeThread = function(userId, topicId, title, content){
         title: title,
         replies: [{user:userId, content:content}]
     });
+}
+
+//creates new reply to specific thread based on request
+threadSchema.methods.addReply = async function(userId, content){
+    this.replies.push({user:userId, content: content});
+    await this.save();
+    return this;
+    
 }
 
 module.exports = mongoose.model('Thread', threadSchema)

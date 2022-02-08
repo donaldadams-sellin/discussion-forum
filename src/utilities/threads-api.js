@@ -9,3 +9,7 @@ export async function getThread(threadId){
 export async function createThread(threadData){
     return sendRequest(`${BASE_URL}`, 'POST', threadData);
 }
+
+export async function addReply(replyData, threadId){
+    return sendRequest(`${BASE_URL}/${threadId}/replies`, 'POST', replyData);
+}

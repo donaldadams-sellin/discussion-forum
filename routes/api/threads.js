@@ -8,7 +8,10 @@ const ensureLoggedIn = require('../../config/ensureLoggedIn');
 //GET request to /api/threads/:id
 router.get('/:id', threadsCtrl.show);
 
-//POST request to /api/threads
+//POST request to /api/threads to create thread
 router.post('/', ensureLoggedIn, threadsCtrl.create);
+
+//POST request to /api/threads/:id/replies to make reply
+router.post('/:id/replies', threadsCtrl.createReply);
 
 module.exports = router;
