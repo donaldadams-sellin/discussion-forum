@@ -6,16 +6,22 @@ export default function ReplyForm({ thread, setThread }) {
     const [replyData, setReplyData] = useState({
         content: ''
     });
+    const [error, setError] = useState('')
 
     function handleChange(evt) {
         setReplyData({ ...replyData, [evt.target.name]: evt.target.value })
+        setError('');
     }
 
     async function handleSubmit(evt) {
         evt.preventDefault();
+        try{
         const threadId = thread._id
         const updatedThread = await threadsAPI.addReply(replyData, threadId);
         setThread(updatedThread);
+        } catch {
+            setError('Post Failed')
+        }
     }
     return (
         <div className="form-container">
@@ -29,6 +35,7 @@ export default function ReplyForm({ thread, setThread }) {
                 />
                 <button type="submit">SUBMIT</button>
             </form>
+            <p>{error}</p>
         </div>
     )
 }

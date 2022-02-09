@@ -7,7 +7,7 @@ export default function ThreadComponent({ user, thread, deleteThread }) {
         <div className='ThreadComponent'>
             <Link to={thread._id}><p>{thread.title}</p></Link>
             <p>{thread.user.name}</p>
-           {user && (user._id === thread.user._id && <button onClick={()=> deleteThread(thread._id)}>DELETE THREAD</button>)}
+           {user && ((user._id === thread.user._id || user.isAdmin) && <button onClick={()=> deleteThread(thread._id)}>DELETE THREAD</button>)}
         </div>
     )
 }

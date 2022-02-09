@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-// const topic = require('./topic');
 const Schema = mongoose.Schema;
 // const User = require('./user');
 
