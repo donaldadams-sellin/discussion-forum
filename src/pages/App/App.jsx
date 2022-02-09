@@ -23,7 +23,7 @@ export default function App() {
 
   return (
     <main className="App">
-      <>
+      
         <NavBar user={user} setUser={setUser} />
         <div className="content">
           <Routes>
@@ -33,7 +33,7 @@ export default function App() {
             <Route path="/login" element={<AuthPage setUser={setUser} />} />
           </Routes>
         </div>
-      </>
+     
 
     </main>
   );

@@ -2,3 +2,26 @@
     border: 2px solid lightgray;
     width: 95%;
 }
+
+.TopicName{
+    text-decoration: none;
+    font-weight: bolder;
+    color: white;
+    padding-left: 10px;
+}
+
+.TopicName:hover{
+    color: lightslategrey;
+}
+
+.even{
+    background-color: rgb(25, 25, 25);
+}
+
+.odd{
+    background-color: rgb(68, 68, 68);
+}
+
+.TopicDescription{
+    padding-left: 10px;
+}

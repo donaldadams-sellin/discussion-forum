@@ -31,7 +31,7 @@ export default function SignUpForm({ handleLogin }) {
         return (
             <div>
                 <div className="form-container">
-                    <form autoComplete="off" onSubmit={handleSubmit}>
+                    <form autoComplete="off" className="auth-form" onSubmit={handleSubmit}>
                         <label>Name</label>
                         <input type="text" name="name" value={userData.name} onChange={handleChange} required />
                         <label>Email</label>

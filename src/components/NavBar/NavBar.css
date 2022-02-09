@@ -3,7 +3,8 @@
     align-items: center;
     justify-content: center;
     background-color: gray;
-    height: 3vw;
+    color: black;
+    height: 45px;
 }
 
 .NavBar > a{

@@ -6,7 +6,8 @@ export default function TopicListPage({topics}) {
 
     return (
         <div className="TopicList">
-            {topics.map((topic, idx)=><TopicComponent key={idx} topic={topic} />)}
+            <h3>Browse to a topic to see what people are discussing!</h3>
+            {topics.map((topic, idx)=><TopicComponent key={idx} idx={idx} topic={topic} />)}
         </div>
         
     )
