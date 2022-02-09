@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-// const User = require('./user');
+const User = require('./user');
 
 const replySchema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: 'User' },
@@ -16,28 +16,44 @@ const threadSchema = new Schema({
     replies: [replySchema]
 }, {
     timestamps: true,
-    toJSON:{
+    toJSON: {
         virtuals: true
     },
-    toObject:{virtuals: true}
+    toObject: { virtuals: true }
 });
 
 //creates new thread from request
-threadSchema.statics.makeThread = function(userId, topicId, title, content){
-   return this.create({
+threadSchema.statics.makeThread = function (userId, topicId, title, content) {
+    return this.create({
         user: userId,
         topic: topicId,
         title: title,
-        replies: [{user:userId, content:content}]
+        replies: [{ user: userId, content: content }]
     });
 }
 
+//either deletes or edits reply, depending on del parameter
+threadSchema.statics.modifyReply = async function (req, del) {
+    const thread = await this.findOne({ 'replies._id': req.params.id });
+    const user = await User.findById(req.user._id);
+    if (user.equals(thread.user) || user.isAdmin) {
+        if(del){
+            await thread.replies.id(req.params.id).remove();
+        } else {
+            await thread.replies.id(req.params.id).set({content:req.body.content});
+        }
+        await thread.save();
+    }
+    await thread.populate({ path: 'replies', populate: { path: 'user', select: 'name' } });
+    return thread;
+}
+
 //creates new reply to specific thread based on request
-threadSchema.methods.addReply = async function(userId, content){
-    this.replies.push({user:userId, content: content});
+threadSchema.methods.addReply = async function (userId, content) {
+    this.replies.push({ user: userId, content: content });
     await this.save();
     return this;
-    
+
 }
 
 module.exports = mongoose.model('Thread', threadSchema)
