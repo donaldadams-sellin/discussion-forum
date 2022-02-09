@@ -24,3 +24,7 @@ export async function addReply(replyData, threadId){
 export async function deleteReply(replyId){
     return sendRequest(`/api/replies/${replyId}`, 'DELETE');
 }
+
+export async function editReply(replyId, replyContent){
+    return sendRequest(`/api/replies/${replyId}`, 'PUT', replyContent);
+}

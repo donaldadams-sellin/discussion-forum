@@ -28,13 +28,14 @@ export default function ThreadForm({ user, topic, threads, setThreads }) {
         <div className="form-container">
             <form autoComplete='off' onSubmit={handleSubmit}>
                 <label>Title: </label>
-                <input name="title" onChange={handleChange} value={threadData.title} type="text" />
+                <input name="title" onChange={handleChange} required value={threadData.title} type="text" />
                 <label>Content: </label>
                 <textarea
                     value={threadData.content}
                     name="content"
                     cols="30" rows="10"
                     onChange={handleChange}
+                    required
                 />
                 <button type="submit">SUBMIT</button>
             </form>

@@ -11,4 +11,7 @@ router.post('/threads/:id/replies', ensureLoggedIn, repliesCtrl.create);
 //DELETE request to /api/replies/:id to delete reply
 router.delete('/replies/:id', ensureLoggedIn, repliesCtrl.delete);
 
+//PUT request to /api/replies/:id to edit reply
+router.put('/replies/:id', ensureLoggedIn, repliesCtrl.update)
+
 module.exports = router;

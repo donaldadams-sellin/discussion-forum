@@ -32,6 +32,7 @@ export default function ReplyForm({ thread, setThread }) {
                 name="content" 
                 cols="30" rows="10"
                 onChange={handleChange}
+                required
                 />
                 <button type="submit">SUBMIT</button>
             </form>

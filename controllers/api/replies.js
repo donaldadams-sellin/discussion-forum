@@ -3,7 +3,8 @@ const User = require('../../models/user');
 
 module.exports = {
     create,
-    delete: deleteReply
+    delete: deleteReply,
+    update
 }
 
 async function create(req, res) {
@@ -30,5 +31,20 @@ async function deleteReply(req, res) {
         res.json(thread);
     } catch {
         res.status(400).json('Delete Failed')
+    }
+}
+
+async function update(req, res){
+    try {
+        const thread = await Thread.findOne({ 'replies._id': req.params.id });
+        const user = await User.findById(req.user._id);
+        if (user.equals(thread.user) || user.isAdmin) {
+            await thread.replies.id(req.params.id).set({content:req.body.content});
+            await thread.save();
+        }
+        await thread.populate({ path: 'replies', populate: { path: 'user', select: 'name' } });
+        res.json(thread);
+    } catch {
+        res.status(400).json('Edit Failed')
     }
 }
