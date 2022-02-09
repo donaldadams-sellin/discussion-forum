@@ -1,0 +1,20 @@
+.thread-form {
+    width: 95%;
+    border: 2px solid lightgrey;
+    margin-bottom: 5px;
+}
+
+.thread-form > form {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 95%;
+}
+
+.thread-form-input {
+    border: 3px solid black;
+    outline: none;
+}
+
+.thread-form-input:focus {
+    border-color: gray;
+}
