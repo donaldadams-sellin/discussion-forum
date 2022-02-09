@@ -32,7 +32,7 @@ export default function TopicPage({ topics, user }) {
             </div>
             {showForm && <ThreadForm user={user} topic={topic} threads={threads} setThreads={setThreads} />}
             
-                {threads.map((thread, idx) => <ThreadComponent user={user} thread={thread} deleteThread={deleteThread} key={idx} />)}
+                {threads.map((thread, idx) => <ThreadComponent user={user} thread={thread} deleteThread={deleteThread} idx={idx} key={idx} />)}
            
         
         </div>

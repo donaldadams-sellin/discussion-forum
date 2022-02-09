@@ -1,4 +1,33 @@
-.ThreadComponent{
+.ThreadComponent {
     border: 2px solid lightgray;
     width: 95%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* padding-right: 10px; */
+}
+
+.thread-title {
+    font-weight: bolder;
+    color: white;
+    padding-left: 10px;
+}
+
+.align-end {
+    justify-self: end;
+    text-align: end;
+    padding-right: 10px;
+}
+
+.thread-title:hover {
+    color: lightslategrey;
+}
+
+.delete-btn {
+    background-color: darkred;
+    color: white;
+    margin-left: 10px;
+}
+
+.delete-btn:hover {
+    background-color: red;
 }
