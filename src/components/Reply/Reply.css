@@ -1,4 +1,18 @@
 .Reply{
     border: 2px solid lightgray;
     width: 95%;
+    min-height: 120px;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+}
+
+.reply-box {
+    border-left: 2px solid lightgrey;
+    justify-self: end;
+    width: 100%;
+}
+
+.content{
+    white-space: pre-wrap;
+    padding: 0px;
 }

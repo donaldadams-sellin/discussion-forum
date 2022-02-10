@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Reply.css';
 
-export default function Reply({ user, reply, deleteReply, editReply }) {
+export default function Reply({ user, reply, deleteReply, editReply, idx }) {
     const [editMode, setEditMode] = useState(false);
     const [editData, setEditData] = useState({ content: reply.content });
 
@@ -9,31 +9,40 @@ export default function Reply({ user, reply, deleteReply, editReply }) {
         setEditData({ [evt.target.name]: evt.target.value })
     }
 
-    async function handleSubmit(evt){
+    async function handleSubmit(evt) {
         evt.preventDefault();
         setEditMode(false);
         editReply(reply._id, editData);
     }
 
     return (
-        <div className='Reply'>
+        <>
             {editMode ?
-                <form onSubmit={handleSubmit}>
-                    <textarea name="content" onChange={handleChange} value={editData.content} />
-                    <button type="submit">EDIT</button>
-                    <button onClick={()=>setEditMode(!editMode)} >Cancel</button>
-                </form>
+                <div className='form-container thread-form'>
+                    <form onSubmit={handleSubmit}>
+                        <textarea className='thread-form-input' name="content" onChange={handleChange} value={editData.content} />
+                        <button type="submit">EDIT</button>
+                        <button onClick={() => setEditMode(!editMode)} >Cancel</button>
+                    </form>
+                </div>
                 :
-                <>
-                    <p style={{whiteSpace: 'pre-wrap'}}>{reply.content}</p>
-                    <p>{reply.user.name}</p>
-                    {user && ((user._id === reply.user._id || user.isAdmin) && 
+                <div className={`Reply ${idx % 2 === 0 ? 'even' : 'odd'}`}>
                     <>
-                    <button onClick={() => deleteReply(reply._id)} >DELETE</button>
-                    <button onClick={()=>setEditMode(!editMode)} >Edit</button>
-                    </>)}    
-                </>
+                        <p className='content' style={{ whiteSpace: 'pre-wrap' }}>{reply.content}</p>
+                        <div className='reply-box align-end'>
+                            <div className="info">
+                                <p>{reply.user.name}</p>
+                                <p>{reply.createdAt.slice(0, 10)}</p>
+                            </div>
+                            {user && ((user._id === reply.user._id || user.isAdmin) &&
+                                <>
+                                    <button onClick={() => setEditMode(!editMode)} >Edit</button>
+                                    <button className='delete-btn' onClick={() => deleteReply(reply._id)} >DELETE</button>
+                                </>)}
+                        </div>
+                    </>
+                </div>
             }
-        </div>
+        </>
     )
 }
