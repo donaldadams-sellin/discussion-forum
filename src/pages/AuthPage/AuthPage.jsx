@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import SignUpForm from "../../components/SignUpForm/SignUpForm";
 import LoginForm from "../../components/LoginForm/LoginForm";
+import './AuthPage.css';
 
 export default function AuthPage({ setUser }) {
     const navigate = useNavigate();
@@ -11,10 +12,12 @@ export default function AuthPage({ setUser }) {
     }
     
     return (
-        <main>
+        <>
             <h1>AuthPage</h1>
-            <SignUpForm handleLogin={handleLogin} />
+            <div className='form-container'>
             <LoginForm handleLogin={handleLogin} />
-        </main>
+            <SignUpForm handleLogin={handleLogin} />
+            </div>
+        </>
     );
 }

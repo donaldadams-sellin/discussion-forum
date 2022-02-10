@@ -29,13 +29,13 @@ export default function ThreadPage({ user }) {
         getThread();
     }, [])
     return (
-        <div className='ThreadPage'>
+        <>
             <div className="topic-bar">
                 <span className="topic-name">{thread.title}</span>
                 {user && <button onClick={() => setShowForm(!showForm)}>ADD REPLY</button>}
             </div>
             {showForm && <ReplyForm thread={thread} setThread={setThread} setShowForm={setShowForm} />}
-            {thread.replies.map((reply, idx) => <Reply user={user} reply={reply} deleteReply={deleteReply} editReply={editReply} idx={idx} key={idx} />)}
-        </div>
+            {thread.replies.map((reply, idx) => <Reply user={user} reply={reply} deleteReply={deleteReply} editReply={editReply} idx={idx} last={thread.replies.length -1} key={idx} />)}
+        </>
     )
 }

@@ -25,7 +25,7 @@ export default function TopicPage({ topics, user }) {
         getThreads();
     }, [topic]);
     return (
-        <div className="TopicPage">
+        <>
             <div className="topic-bar">
                 <span className="topic-name">{topic && topic.name}</span>
                 <span>Threads:{threads.length}</span>
@@ -33,9 +33,9 @@ export default function TopicPage({ topics, user }) {
             </div>
             {showForm && <ThreadForm user={user} topic={topic} threads={threads} setThreads={setThreads} />}
             
-                {threads.map((thread, idx) => <ThreadComponent user={user} thread={thread} deleteThread={deleteThread} idx={idx} key={idx} />)}
+                {threads.map((thread, idx, threads) => <ThreadComponent user={user} thread={thread} deleteThread={deleteThread} idx={idx} key={idx} last={threads.length -1} />)}
            
         
-        </div>
+        </>
     )
 }

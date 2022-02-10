@@ -1,0 +1,15 @@
+
+.form-container{
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    background-color: rgb(68, 68, 68);
+    width: 95%;
+  }
+
+.auth-form{
+    display: grid;
+    grid-template-columns: 1fr 3fr;    
+  }

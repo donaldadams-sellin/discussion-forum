@@ -21,27 +21,33 @@ code {
     monospace;
 }
 
-/* #root{
-  background-color: black;
-  color: lightgray;
-  height: 100vh;
-  width: 100vw;
-} */
-
-.form-container{
-  padding: 10px 0px;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center; 
-}
-
-.auth-form{
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  color: gray;
-  
-}
-
 .content{
   padding-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 960px;
+  margin: 0 auto;
 }
+
+.top {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.bottom {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+button {
+  background-color: black;
+  color: white;
+}
+
+button:hover {
+  background-color: white;
+  color: black;
+}
+

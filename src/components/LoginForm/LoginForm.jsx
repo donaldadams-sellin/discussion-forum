@@ -28,8 +28,8 @@ export default function LoginForm({ handleLogin }) {
   }
 
   return (
-    <div>
-      <div className="form-container">
+    <>
+      
         <form autoComplete="off" className="auth-form" onSubmit={handleSubmit}>
           <label>Email</label>
           <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
@@ -37,8 +37,8 @@ export default function LoginForm({ handleLogin }) {
           <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
           <button type="submit">LOG IN</button>
         </form>
-      </div>
-      <p className="error-message">&nbsp;{error}</p>
-    </div>
+      
+      <p>{error}</p>
+    </>
   );
 }

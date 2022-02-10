@@ -1,7 +1,9 @@
 .thread-form {
     width: 95%;
     border: 2px solid lightgrey;
+    border-radius: 10px;
     margin-bottom: 5px;
+    background-color: rgb(68, 68, 68);
 }
 
 .thread-form > form {

@@ -29,8 +29,8 @@ export default function SignUpForm({ handleLogin }) {
     }
         const disable = userData.password !== userData.confirm;
         return (
-            <div>
-                <div className="form-container">
+            <>
+                
                     <form autoComplete="off" className="auth-form" onSubmit={handleSubmit}>
                         <label>Name</label>
                         <input type="text" name="name" value={userData.name} onChange={handleChange} required />
@@ -42,9 +42,9 @@ export default function SignUpForm({ handleLogin }) {
                         <input type="password" name="confirm" value={userData.confirm} onChange={handleChange} required />
                         <button type="submit" disabled={disable}>SIGN UP</button>
                     </form>
-                </div>
-                <p className="error-message">&nbsp;{userData.error}</p>
-            </div>
+              
+                <p>&nbsp;{userData.error}</p>
+            </>
         );
     }
 

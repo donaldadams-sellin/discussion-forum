@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Reply.css';
 
-export default function Reply({ user, reply, deleteReply, editReply, idx }) {
+export default function Reply({ user, reply, deleteReply, editReply, idx, last }) {
     const [editMode, setEditMode] = useState(false);
     const [editData, setEditData] = useState({ content: reply.content });
 
@@ -26,7 +26,7 @@ export default function Reply({ user, reply, deleteReply, editReply, idx }) {
                     </form>
                 </div>
                 :
-                <div className={`Reply ${idx % 2 === 0 ? 'even' : 'odd'}`}>
+                <div className={`Reply ${idx % 2 === 0 ? 'even' : 'odd'} ${idx === 0 && 'top'} ${idx === last && 'bottom'}`}>
                     <>
                         <p className='reply-content' style={{ whiteSpace: 'pre-wrap' }}>{reply.content}</p>
                         <div className='reply-box align-end'>
