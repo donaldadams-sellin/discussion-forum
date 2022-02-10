@@ -6,10 +6,7 @@ export default function ThreadComponent({ user, thread, deleteThread, idx, last 
     return (
         <div className={
             `ThreadComponent 
-        ${idx % 2 === 0 ? 'even' : 'odd'}
-        ${idx === 0 && 'top'}
-        ${idx === last && 'bottom'}
-        `}
+        ${idx % 2 === 0 ? 'even' : 'odd'} ${idx === 0 && 'top'} ${idx === last && 'bottom'}`}
         >
             <div>
                 <Link to={thread._id}><p className='thread-title'>{thread.title}</p></Link>
