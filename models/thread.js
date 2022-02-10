@@ -39,6 +39,10 @@ threadSchema.statics.modifyReply = async function (req, del) {
     if (user.equals(thread.user) || user.isAdmin) {
         if(del){
             await thread.replies.id(req.params.id).remove();
+            if(thread.replies.length === 0){
+                await thread.delete();
+                return null;
+            }
         } else {
             await thread.replies.id(req.params.id).set({content:req.body.content});
         }
