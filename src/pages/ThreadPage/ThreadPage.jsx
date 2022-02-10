@@ -30,8 +30,8 @@ export default function ThreadPage({ user }) {
     }, [])
     return (
         <>
-            <div className="topic-bar">
-                <span className="topic-name">{thread.title}</span>
+            <div className="header-bar">
+                <span className="header-name">{thread.title}</span>
                 {user && <button onClick={() => setShowForm(!showForm)}>ADD REPLY</button>}
             </div>
             {showForm && <ReplyForm thread={thread} setThread={setThread} setShowForm={setShowForm} />}

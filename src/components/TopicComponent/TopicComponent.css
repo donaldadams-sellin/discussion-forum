@@ -13,14 +13,6 @@
     color: lightslategrey;
 }
 
-.even{
-    background-color: rgb(25, 25, 25);
-}
-
-.odd{
-    background-color: rgb(68, 68, 68);
-}
-
 .TopicDescription{
     padding-left: 10px;
 }
