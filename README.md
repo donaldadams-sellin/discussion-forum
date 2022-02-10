@@ -1,2 +1,3 @@
-# MERN-Stack Infrastructure
-Clone this repo to provide the starter code for a comprehensive MERN-Stack project including token-based authentication.
+# Discussion forum 
+
+A layout/template for a forum with preset topics. 
