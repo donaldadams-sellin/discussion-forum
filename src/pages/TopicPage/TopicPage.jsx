@@ -29,7 +29,7 @@ export default function TopicPage({ topics, user }) {
             <div className="header-bar">
                 <span className="header-name">{topic && topic.name}</span>
                 <span>Threads:{threads.length}</span>
-               { user && <button onClick={()=>setShowForm(!showForm)}>ADD THREAD</button> }
+               { user && <button className='btn' onClick={()=>setShowForm(!showForm)}>ADD THREAD</button> }
             </div>
             {showForm && <ThreadForm user={user} topic={topic} threads={threads} setThreads={setThreads} />}
             

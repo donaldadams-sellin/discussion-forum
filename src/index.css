@@ -64,7 +64,9 @@ code {
 .header-name {
   font-weight: bolder;
   padding-left: 5px;
+  font-size: 25px;
 }
+
 
 /* button specific styling */
 button {
