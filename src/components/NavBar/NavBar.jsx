@@ -9,6 +9,7 @@ export default function NavBar({ user, setUser }) {
     }
 
     return (
+        <>
         <nav className='NavBar'>
             <Link to="/">Home</Link>
             &nbsp; | &nbsp;
@@ -24,5 +25,6 @@ export default function NavBar({ user, setUser }) {
                 </>}
 
         </nav>
+        </>
     );
 }

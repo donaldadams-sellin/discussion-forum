@@ -23,17 +23,16 @@ export default function App() {
 
   return (
     <main className="App">
-      
-        <NavBar user={user} setUser={setUser} />
-        <div className="content">
-          <Routes>
-            <Route path="/" element={<TopicListPage topics={topics} />} />
-            <Route path='/:id' element={<TopicPage user={user} topics={topics}/>} />
-            <Route path='/:id/:threadId' element={<ThreadPage user={user}/>} />
-            <Route path="/login" element={<AuthPage setUser={setUser} />} />
-          </Routes>
-        </div>
-     
+      <NavBar user={user} setUser={setUser} />
+      <div className="content">
+        <Routes>
+          <Route path="/" element={<TopicListPage topics={topics} />} />
+          <Route path='/:id' element={<TopicPage user={user} topics={topics} />} />
+          <Route path='/:id/:threadId' element={<ThreadPage user={user} />} />
+          <Route path="/login" element={<AuthPage setUser={setUser} />} />
+        </Routes>
+      </div>
+
 
     </main>
   );

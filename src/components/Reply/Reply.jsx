@@ -28,10 +28,10 @@ export default function Reply({ user, reply, deleteReply, editReply, idx }) {
                 :
                 <div className={`Reply ${idx % 2 === 0 ? 'even' : 'odd'}`}>
                     <>
-                        <p className='content' style={{ whiteSpace: 'pre-wrap' }}>{reply.content}</p>
+                        <p className='reply-content' style={{ whiteSpace: 'pre-wrap' }}>{reply.content}</p>
                         <div className='reply-box align-end'>
                             <div className="info">
-                                <p>{reply.user.name}</p>
+                                <p> Poster: {reply.user.name}</p>
                                 <p>{reply.createdAt.slice(0, 10)}</p>
                             </div>
                             {user && ((user._id === reply.user._id || user.isAdmin) &&
