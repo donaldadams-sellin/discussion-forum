@@ -30,6 +30,7 @@ export default function ThreadPage({ user }) {
     useEffect(function () {
         async function getThread() {
             const thread = await threadsAPI.getThread(threadId);
+            console.log(thread);
             setThread(thread)
         }
         getThread();

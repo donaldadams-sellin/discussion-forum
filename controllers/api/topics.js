@@ -12,6 +12,6 @@ async function index(req, res){
 }
 
 async function show(req, res){
-    const threads = await Thread.find({topic: req.params.id}).populate('user', 'name');
+    const threads = await Thread.find({topic: req.params.id}).sort('-updatedAt').populate('user', 'name');
     res.json(threads)
 }

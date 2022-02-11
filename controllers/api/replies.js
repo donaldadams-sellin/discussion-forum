@@ -12,6 +12,7 @@ async function create(req, res) {
         const thread = await Thread.findById(req.params.id);
         await thread.addReply(req.user._id, req.body.content);
         await thread.populate({ path: 'replies', populate: { path: 'user', select: 'name' } });
+        await thread.populate('topic', 'name');
         res.json(thread);
     } catch {
         res.status(400).json('Reply Failed')
@@ -29,6 +30,7 @@ async function deleteReply(req, res) {
         // }
         // await thread.populate({ path: 'replies', populate: { path: 'user', select: 'name' } });
         const thread = await Thread.modifyReply(req, true);
+        await thread.populate('topic', 'name');
         res.json(thread);
     } catch {
         res.status(400).json('Delete Failed')
@@ -45,6 +47,7 @@ async function update(req, res){
         // }
         // await thread.populate({ path: 'replies', populate: { path: 'user', select: 'name' } });
         const thread = await Thread.modifyReply(req, false);
+        await thread.populate('topic', 'name');
         res.json(thread);
     } catch {
         res.status(400).json('Edit Failed')
