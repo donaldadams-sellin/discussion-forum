@@ -36,7 +36,8 @@ threadSchema.statics.makeThread = function (userId, topicId, title, content) {
 threadSchema.statics.modifyReply = async function (req, del) {
     const thread = await this.findOne({ 'replies._id': req.params.id });
     const user = await User.findById(req.user._id);
-    if (user.equals(thread.user) || user.isAdmin) {
+    if (user.equals(thread.replies.id(req.params.id).user) || user.isAdmin) {
+        console.log('test2');
         if(del){
             await thread.replies.id(req.params.id).remove();
             if(thread.replies.length === 0){
@@ -45,6 +46,7 @@ threadSchema.statics.modifyReply = async function (req, del) {
             }
         } else {
             await thread.replies.id(req.params.id).set({content:req.body.content});
+            
         }
         await thread.save();
     }

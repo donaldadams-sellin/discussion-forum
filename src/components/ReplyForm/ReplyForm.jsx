@@ -2,10 +2,8 @@ import { useState } from 'react';
 import * as threadsAPI from '../../utilities/threads-api';
 import './ReplyForm.css';
 
-export default function ReplyForm({ thread, setThread, setShowForm }) {
-    const [replyData, setReplyData] = useState({
-        content: ''
-    });
+export default function ReplyForm({ thread, setThread, setShowForm, replyData, setReplyData }) {
+    
     const [error, setError] = useState('')
 
     function handleChange(evt) {
@@ -20,6 +18,7 @@ export default function ReplyForm({ thread, setThread, setShowForm }) {
         const updatedThread = await threadsAPI.addReply(replyData, threadId);
         setThread(updatedThread);
         setShowForm(false)
+        setReplyData('')
         } catch {
             setError('Post Failed')
         }

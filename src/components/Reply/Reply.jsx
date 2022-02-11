@@ -5,7 +5,7 @@ import remarkGfm from 'remark-gfm';
 import * as usersAPI from '../../utilities/users-api';
 import './Reply.css';
 
-export default function Reply({ user, reply, deleteReply, editReply, idx, last }) {
+export default function Reply({ user, reply, deleteReply, editReply, idx, last, setReplyData, setShowForm }) {
     const [editMode, setEditMode] = useState(false);
     const [editData, setEditData] = useState({ content: reply.content });
 
@@ -19,9 +19,13 @@ export default function Reply({ user, reply, deleteReply, editReply, idx, last }
         editReply(reply._id, editData);
     }
 
-    async function banUser(){
+    async function banUser() {
         const user = await usersAPI.banUser(reply.user._id);
-        console.log(user);
+    }
+
+    function quote (){
+        setReplyData({content: `>**Quote from: ${reply.user.name}**\n ${reply.content.replace(/^/gm, ">")}\n\n`});
+        setShowForm(true);
     }
 
     return (
@@ -35,7 +39,7 @@ export default function Reply({ user, reply, deleteReply, editReply, idx, last }
                     </form>
                 </div>
                 :
-                <div className={`Reply ${idx % 2 === 0 ? 'even' : 'odd'} ${idx === 0 ? 'top' :``} ${idx === last ? 'bottom' : ''}`}>
+                <div className={`Reply ${idx % 2 === 0 ? 'even' : 'odd'} ${idx === 0 ? 'top' : ``} ${idx === last ? 'bottom' : ''}`}>
                     <>
                         <ReactMarkdown className='reply-content' children={reply.content} remarkPlugins={[remarkGfm, remarkBreaks]} />
                         <div className='reply-box align-end'>
@@ -43,15 +47,15 @@ export default function Reply({ user, reply, deleteReply, editReply, idx, last }
                                 <p> Poster: <span className={`${reply.user.isBanned ? 'banned-user' : ''} ${reply.user.isAdmin ? 'admin-user' : ''}`}>{reply.user.name}</span></p>
                                 <p>{reply.createdAt.slice(0, 10)}</p>
                             </div>
-                            {(user && !user.isBanned) &&<div className='btn-group'>
+                            {(user && !user.isBanned) && <div className='btn-group'>
                                 {((user._id === reply.user._id || user.isAdmin) &&
                                     <>
                                         <button onClick={() => setEditMode(!editMode)} >EDIT</button>
                                         <button className='delete-btn' onClick={() => deleteReply(reply._id)} >DELETE</button>
                                     </>)}
-                                    <button>QUOTE</button>
-                                    {(user.isAdmin && !reply.user.isAdmin) && <button className='delete-btn' onClick={banUser}>BAN</button>}
-                            </div> }
+                                <button onClick={quote}>QUOTE</button>
+                                {(user.isAdmin && !reply.user.isAdmin) && <button className='delete-btn' onClick={banUser}>BAN</button>}
+                            </div>}
                         </div>
                     </>
                 </div>
