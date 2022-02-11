@@ -11,3 +11,6 @@ export async function login(credentials) {
     return sendRequest(`${BASE_URL}/login`, 'POST', credentials);
 }
 
+export async function banUser(userId) {
+    return sendRequest(`${BASE_URL}/${userId}/ban`);
+}

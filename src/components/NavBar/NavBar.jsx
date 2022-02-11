@@ -16,6 +16,7 @@ export default function NavBar({ user, setUser }) {
             {user ?
                 <>
                     <span>Welcome, {user.name}</span>
+                    {user.isBanned ? <> &nbsp; | &nbsp;<span style={{color:'red'}}>You are currently banned</span> </> : <div></div>}
                     &nbsp; | &nbsp;
                     <Link className='btn' onClick={handleLogOut} to="">Log Out</Link>
                 </>

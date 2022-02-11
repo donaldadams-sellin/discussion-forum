@@ -49,6 +49,7 @@ threadSchema.statics.modifyReply = async function (req, del) {
         await thread.save();
     }
     await thread.populate({ path: 'replies', populate: { path: 'user', select: 'name' } });
+    await thread.populate('topic', 'name');
     return thread;
 }
 

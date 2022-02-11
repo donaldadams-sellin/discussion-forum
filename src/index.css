@@ -47,6 +47,18 @@ code {
   background-color: rgb(68, 68, 68);
 }
 
+/* username styling for banned users and admin users */
+
+.banned-user {
+  color: red;
+  text-decoration: line-through;
+}
+
+.admin-user {
+  color: green;
+  font-weight: bold;
+}
+
 /* styling for bars at top of topic and thread pages */
 .header-bar {
   background-color: rgb(68, 68, 68);

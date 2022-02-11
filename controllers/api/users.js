@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 module.exports = {
     create,
     login,
+    ban
 };
 
 async function create(req, res) {
@@ -31,6 +32,22 @@ async function login(req, res) {
         res.json(createJWT(user));
     } catch {
         res.status(400).json('Bad Credentials');
+    }
+}
+
+async function ban(req, res) {
+    try {
+        const user = await User.findById(req.params.id)
+        if(!req.user.isAdmin || user.isAdmin){
+        throw new Error();
+        }
+        console.log(user);
+        user.isBanned = !user.isBanned;
+        await user.save();
+        res.json(user);
+
+    } catch {
+        res.status(400).json('Ban Failed');
     }
 }
 

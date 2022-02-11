@@ -9,7 +9,7 @@ module.exports = {
 
 //thread top level functions
 async function show(req, res) {
-    const thread = await Thread.findById(req.params.id).populate({ path: 'replies', populate: { path: 'user', select: 'name' } }).populate('topic', 'name');
+    const thread = await Thread.findById(req.params.id).populate({ path: 'replies', populate: { path: 'user', select: 'name isBanned isAdmin' } }).populate('topic', 'name');
     res.json(thread);
 }
 

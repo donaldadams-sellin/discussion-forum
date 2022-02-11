@@ -9,4 +9,7 @@ router.post('/', usersCtrl.create);
 //POST to /api/users/login
 router.post('/login', usersCtrl.login);
 
+//GET request to /api/users/:id/ban for admin banning user
+router.get('/:id/ban', ensureLoggedIn, usersCtrl.ban);
+
 module.exports = router;

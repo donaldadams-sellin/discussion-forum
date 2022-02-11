@@ -30,7 +30,6 @@ export default function ThreadPage({ user }) {
     useEffect(function () {
         async function getThread() {
             const thread = await threadsAPI.getThread(threadId);
-            console.log(thread);
             setThread(thread)
         }
         getThread();
@@ -40,9 +39,9 @@ export default function ThreadPage({ user }) {
             <div className="header-bar">
                 {thread.replies.length && <Link className='btn' to={`/${thread.topic._id}`}> Back to {thread.topic.name}</Link>}
                 <span className="header-name">{thread.title}</span>
-                {user && <button className='btn' onClick={() => setShowForm(!showForm)}>ADD REPLY</button>}
+                {user && !user.isBanned ? <button className='btn' onClick={() => setShowForm(!showForm)}>ADD REPLY</button> : <div></div>}
             </div>
-            {showForm && <ReplyForm thread={thread} setThread={setThread} setShowForm={setShowForm} />}
+            {(showForm && user && !user.isBanned) && <ReplyForm thread={thread} setThread={setThread} setShowForm={setShowForm} />}
             {thread.replies.map((reply, idx) => <Reply user={user} reply={reply} deleteReply={deleteReply} editReply={editReply} idx={idx} last={thread.replies.length - 1} key={idx} />)}
         </>
     )
