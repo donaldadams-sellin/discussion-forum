@@ -14,8 +14,7 @@ a {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 /* main content wrapper around everything besides nav-bar */
 .content{
@@ -78,4 +77,6 @@ button:hover {
   background-color: white;
   color: black;
 }
+
+
 

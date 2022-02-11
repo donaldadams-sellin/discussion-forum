@@ -10,10 +10,43 @@
     border-left: 2px solid lightgrey;
     text-align: center;
     justify-self: end;
-    width: 100%;
+    /* width: 100%; */
 }
 
 .reply-content{
-    white-space: pre-wrap;
-    padding: 0px 0px 0px 5px;
+    padding-left: 5px;
+    overflow: auto;
+    word-wrap: break-word;
 }
+
+/* styling related to markdown being allowed in replies */
+blockquote {
+    border: solid 3px white ;
+    padding-left: 5px;
+    /* word-wrap: break-word; */
+    width: inherit;
+    
+  }
+  
+  pre {
+    border: 1px solid white;
+    padding: 2px;
+    background-color: rgb(0, 0, 0);
+    word-wrap: break-word;
+    overflow: auto;
+    
+    
+  }
+  
+  pre > code {
+    border: none;
+    word-wrap: break-word;
+    
+  }
+  
+  code {
+    border: 1px solid white;
+    padding: 2px;
+    background-color: rgb(0, 0, 0);
+    
+  }

@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkBreaks from 'remark-breaks';
+import remarkGfm from 'remark-gfm';
 import './Reply.css';
 
 export default function Reply({ user, reply, deleteReply, editReply, idx, last }) {
@@ -20,7 +23,7 @@ export default function Reply({ user, reply, deleteReply, editReply, idx, last }
             {editMode ?
                 <div className='form-container thread-form'>
                     <form onSubmit={handleSubmit}>
-                        <textarea className='thread-form-input' name="content" onChange={handleChange} value={editData.content} />
+                        <textarea className='thread-form-input' rows='10' name="content" onChange={handleChange} value={editData.content} />
                         <button type="submit">EDIT</button>
                         <button onClick={() => setEditMode(!editMode)} >Cancel</button>
                     </form>
@@ -28,7 +31,7 @@ export default function Reply({ user, reply, deleteReply, editReply, idx, last }
                 :
                 <div className={`Reply ${idx % 2 === 0 ? 'even' : 'odd'} ${idx === 0 && 'top'} ${idx === last && 'bottom'}`}>
                     <>
-                        <p className='reply-content' style={{ whiteSpace: 'pre-wrap' }}>{reply.content}</p>
+                        <ReactMarkdown className='reply-content' children={reply.content} remarkPlugins={[remarkGfm, remarkBreaks]} />
                         <div className='reply-box align-end'>
                             <div className="info">
                                 <p> Poster: {reply.user.name}</p>
