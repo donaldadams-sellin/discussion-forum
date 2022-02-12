@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as threadsAPI from '../../utilities/threads-api';
-import './ThreadForm.css';
+
 
 export default function ThreadForm({ user, topic, threads, setThreads }) {
     const [threadData, setThreadData] = useState({
@@ -13,6 +13,8 @@ export default function ThreadForm({ user, topic, threads, setThreads }) {
 
     function handleChange(evt) {
         setThreadData({ ...threadData, [evt.target.name]: evt.target.value });
+        evt.target.style.height = 'auto';
+        evt.target.style.height = `${evt.target.scrollHeight}px`;
         setError('');
     }
 
@@ -32,7 +34,9 @@ export default function ThreadForm({ user, topic, threads, setThreads }) {
             <form autoComplete='off' onSubmit={handleSubmit}>
                 <label>Title: </label>
                 <input className='thread-form-input' name="title" onChange={handleChange} required value={threadData.title} type="text" />
-                <label>Content: </label>
+                <br />
+                <label>Content: Markdown is supported!</label>
+                <br />
                 <textarea
                     className='thread-form-input'
                     value={threadData.content}

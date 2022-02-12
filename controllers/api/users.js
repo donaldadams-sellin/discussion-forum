@@ -41,7 +41,6 @@ async function ban(req, res) {
         if(!req.user.isAdmin || user.isAdmin){
         throw new Error();
         }
-        console.log(user);
         user.isBanned = !user.isBanned;
         await user.save();
         res.json(user);

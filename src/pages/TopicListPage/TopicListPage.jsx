@@ -1,5 +1,4 @@
 import TopicComponent from '../../components/TopicComponent/TopicComponent';
-import './TopicListPage.css';
 
 export default function TopicListPage({topics}) {
     

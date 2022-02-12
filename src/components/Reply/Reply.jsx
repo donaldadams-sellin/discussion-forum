@@ -5,12 +5,17 @@ import remarkGfm from 'remark-gfm';
 import * as usersAPI from '../../utilities/users-api';
 import './Reply.css';
 
-export default function Reply({ user, reply, deleteReply, editReply, idx, last, setReplyData, setShowForm }) {
+export default function Reply({ user, reply, deleteReply, editReply, idx, last, setReplyData, setShowForm}) {
     const [editMode, setEditMode] = useState(false);
     const [editData, setEditData] = useState({ content: reply.content });
+    const [banned, setBanned] = useState(reply.user.isBanned);
+    
+    
 
     function handleChange(evt) {
-        setEditData({ [evt.target.name]: evt.target.value })
+        setEditData({ [evt.target.name]: evt.target.value });
+        evt.target.style.height = 'auto';
+        evt.target.style.height = `${evt.target.scrollHeight}px`;
     }
 
     async function handleSubmit(evt) {
@@ -21,11 +26,18 @@ export default function Reply({ user, reply, deleteReply, editReply, idx, last, 
 
     async function banUser() {
         const user = await usersAPI.banUser(reply.user._id);
+        setBanned(user.isBanned)
     }
 
-    function quote (){
-        setReplyData({content: `>**Quote from: ${reply.user.name}**\n ${reply.content.replace(/^/gm, ">")}\n\n`});
+    function quote() {
+        setReplyData({ content: `>**Quote from: ${reply.user.name}**\n ${reply.content.replace(/^/gm, ">")}\n\n` });
         setShowForm(true);
+    }
+
+    function focus(evt){
+        evt.target.setSelectionRange(editData.content.length, editData.content.length);
+        evt.target.scrollTop = evt.target.scrollHeight;
+        evt.target.style.height = `${evt.target.scrollHeight}px`;
     }
 
     return (
@@ -33,7 +45,7 @@ export default function Reply({ user, reply, deleteReply, editReply, idx, last, 
             {editMode ?
                 <div className='form-container thread-form'>
                     <form onSubmit={handleSubmit}>
-                        <textarea className='thread-form-input' rows='10' name="content" onChange={handleChange} value={editData.content} />
+                        <textarea className='thread-form-input' rows='10' name="content" onChange={handleChange} value={editData.content} autoFocus onFocus={focus} />
                         <button type="submit">EDIT</button>
                         <button onClick={() => setEditMode(!editMode)} >Cancel</button>
                     </form>
@@ -44,7 +56,7 @@ export default function Reply({ user, reply, deleteReply, editReply, idx, last, 
                         <ReactMarkdown className='reply-content' children={reply.content} remarkPlugins={[remarkGfm, remarkBreaks]} />
                         <div className='reply-box align-end'>
                             <div className="info">
-                                <p> Poster: <span className={`${reply.user.isBanned ? 'banned-user' : ''} ${reply.user.isAdmin ? 'admin-user' : ''}`}>{reply.user.name}</span></p>
+                                <p> Poster: <span className={`${banned ? 'banned-user' : ''} ${reply.user.isAdmin ? 'admin-user' : ''}`}>{reply.user.name}</span></p>
                                 <p>{reply.createdAt.slice(0, 10)}</p>
                             </div>
                             {(user && !user.isBanned) && <div className='btn-group'>
@@ -54,7 +66,7 @@ export default function Reply({ user, reply, deleteReply, editReply, idx, last, 
                                         <button className='delete-btn' onClick={() => deleteReply(reply._id)} >DELETE</button>
                                     </>)}
                                 <button onClick={quote}>QUOTE</button>
-                                {(user.isAdmin && !reply.user.isAdmin) && <button className='delete-btn' onClick={banUser}>BAN</button>}
+                                {(user.isAdmin && !reply.user.isAdmin) && <button className='delete-btn' onClick={banUser}>{banned ? 'UNBAN' : 'BAN'}</button>}
                             </div>}
                         </div>
                     </>

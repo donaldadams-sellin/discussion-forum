@@ -4,7 +4,6 @@ import * as topicsAPI from '../../utilities/topics-api';
 import * as threadsAPI from '../../utilities/threads-api';
 import ThreadComponent from '../../components/ThreadComponent/ThreadComponent';
 import ThreadForm from '../../components/ThreadForm/ThreadForm';
-import './TopicPage.css';
 
 export default function TopicPage({ topics, user }) {
     const { id } = useParams();
@@ -31,6 +30,7 @@ export default function TopicPage({ topics, user }) {
                 <span>Threads:{threads.length}</span>
                { user && !user.isBanned ? <button className='btn' onClick={()=>setShowForm(!showForm)}>ADD THREAD</button> : <div></div>}
             </div>
+            {threads.length === 0 && <h1>No Threads Yet</h1>}
             {(showForm && user && !user.isBanned) && <ThreadForm user={user} topic={topic} threads={threads} setThreads={setThreads} />}
             
                 {threads.map((thread, idx, threads) => <ThreadComponent user={user} thread={thread} deleteThread={deleteThread} idx={idx} key={idx} last={threads.length -1} />)}

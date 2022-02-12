@@ -3,7 +3,6 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import * as threadsAPI from '../../utilities/threads-api';
 import ReplyForm from '../../components/ReplyForm/ReplyForm';
 import Reply from '../../components/Reply/Reply';
-import './ThreadPage.css';
 
 
 export default function ThreadPage({ user }) {
@@ -44,8 +43,8 @@ export default function ThreadPage({ user }) {
                 <span className="header-name">{thread.title}</span>
                 {user && !user.isBanned ? <button className='btn' onClick={() => setShowForm(!showForm)}>ADD REPLY</button> : <div></div>}
             </div>
-            {(showForm && user && !user.isBanned) && <ReplyForm thread={thread} setThread={setThread} setShowForm={setShowForm} replyData={replyData} setReplyData={setReplyData} />}
-            {thread.replies.map((reply, idx) => <Reply user={user} reply={reply} deleteReply={deleteReply} editReply={editReply} idx={idx} last={thread.replies.length - 1} key={idx} setReplyData={setReplyData} setShowForm={setShowForm} />)}
+            {(showForm && user && !user.isBanned) && <ReplyForm autoFocus thread={thread} setThread={setThread} setShowForm={setShowForm} replyData={replyData} setReplyData={setReplyData} />}
+            {thread.replies.map((reply, idx) => <Reply user={user} reply={reply} deleteReply={deleteReply} editReply={editReply} idx={idx} last={thread.replies.length - 1} key={idx} setReplyData={setReplyData} setShowForm={setShowForm}/>)}
         </>
     )
 }

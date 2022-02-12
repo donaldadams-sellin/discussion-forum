@@ -23,7 +23,7 @@ code {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 960px;
+  width: 1200px;
   margin: 0 auto;
 }
 
@@ -74,10 +74,33 @@ code {
 
 .header-name {
   font-weight: bolder;
-  padding-left: 5px;
+  
   font-size: 25px;
 }
 
+/* Thread and reply form styling */
+.thread-form {
+  width: 95%;
+  border: 2px solid rgb(119, 119, 119);
+  border-radius: 10px;
+  margin-bottom: 5px;
+  background-color: rgb(68, 68, 68);
+}
+
+.thread-form > form {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 95%;
+}
+
+.thread-form-input {
+  border: 3px solid black;
+  outline: none;
+}
+
+.thread-form-input:focus {
+  border-color: gray;
+}
 
 /* button specific styling */
 button {
