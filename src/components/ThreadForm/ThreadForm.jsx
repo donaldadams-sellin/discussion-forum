@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as threadsAPI from '../../utilities/threads-api';
 
 
-export default function ThreadForm({ user, topic, threads, setThreads }) {
+export default function ThreadForm({ topic }) {
     const [threadData, setThreadData] = useState({
         title: '',
         content: ''
@@ -23,7 +23,6 @@ export default function ThreadForm({ user, topic, threads, setThreads }) {
         try {
             threadData.topicId = topic._id
             const newThread = await threadsAPI.createThread(threadData);
-            // setThreads([...threads, newThread]);
             navigate(`/${topic._id}/${newThread._id}`)
         } catch {
             setError('Post Failed')

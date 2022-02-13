@@ -47,6 +47,12 @@ code {
   background-color: rgb(68, 68, 68);
 }
 
+.align-end {
+  justify-self: end;
+  text-align: end;
+  padding-right: 10px;
+}
+
 /* username styling for banned users and admin users */
 
 .banned-user {

@@ -25,7 +25,7 @@ export default function App() {
       <NavBar user={user} setUser={setUser} />
       <div className="content">
         <Routes>
-          <Route path="/" element={<TopicListPage topics={topics} />} />
+          <Route path="/" element={<TopicListPage user={user} topics={topics} setTopics={setTopics} />} />
           <Route path='/:id' element={<TopicPage user={user} topics={topics} />} />
           <Route path='/:id/:threadId' element={<ThreadPage user={user} />} />
           <Route path="/login" element={<AuthPage setUser={setUser} />} />

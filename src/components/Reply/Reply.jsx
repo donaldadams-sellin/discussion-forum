@@ -5,12 +5,12 @@ import remarkGfm from 'remark-gfm';
 import * as usersAPI from '../../utilities/users-api';
 import './Reply.css';
 
-export default function Reply({ user, reply, deleteReply, editReply, idx, last, setReplyData, setShowForm}) {
+export default function Reply({ user, reply, deleteReply, editReply, idx, last, setReplyData, setShowForm }) {
     const [editMode, setEditMode] = useState(false);
     const [editData, setEditData] = useState({ content: reply.content });
     const [banned, setBanned] = useState(reply.user.isBanned);
-    
-    
+
+
 
     function handleChange(evt) {
         setEditData({ [evt.target.name]: evt.target.value });
@@ -34,7 +34,7 @@ export default function Reply({ user, reply, deleteReply, editReply, idx, last, 
         setShowForm(true);
     }
 
-    function focus(evt){
+    function focus(evt) {
         evt.target.setSelectionRange(editData.content.length, editData.content.length);
         evt.target.scrollTop = evt.target.scrollHeight;
         evt.target.style.height = `${evt.target.scrollHeight}px`;

@@ -1,6 +1,8 @@
 .TopicComponent{
     border: 2px solid rgb(119, 119, 119);
     width: 95%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 .TopicName{

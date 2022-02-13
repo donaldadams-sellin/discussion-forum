@@ -11,7 +11,7 @@ async function create(req, res) {
     try {
         const thread = await Thread.findById(req.params.id);
         await thread.addReply(req.user._id, req.body.content);
-        await thread.populate({ path: 'replies', populate: { path: 'user', select: 'name' } });
+        await thread.populate({ path: 'replies', populate: { path: 'user', select: 'name isAdmin isBanned' } });
         await thread.populate('topic', 'name');
         res.json(thread);
     } catch {

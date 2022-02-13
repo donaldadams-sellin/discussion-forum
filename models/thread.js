@@ -23,7 +23,7 @@ const threadSchema = new Schema({
 });
 
 //creates new thread from request
-threadSchema.statics.makeThread = function (userId, topicId, title, content) {
+threadSchema.statics.makeThread = async function (userId, topicId, title, content) {
     return this.create({
         user: userId,
         topic: topicId,
@@ -50,7 +50,7 @@ threadSchema.statics.modifyReply = async function (req, del) {
         }
         await thread.save();
     }
-    await thread.populate({ path: 'replies', populate: { path: 'user', select: 'name' } });
+    await thread.populate({ path: 'replies', populate: { path: 'user', select: 'name isAdmin isBanned' } });
     await thread.populate('topic', 'name');
     return thread;
 }

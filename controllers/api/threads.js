@@ -16,9 +16,10 @@ async function show(req, res) {
 async function create(req, res) {
     try {
         const newThread = await Thread.makeThread(req.user._id, req.body.topicId, req.body.title, req.body.content);
-        await newThread.populate('user', 'name');
+        await newThread.populate('user', 'name')
         res.json(newThread);
-    } catch {
+    } catch (e) {
+        console.log(e);
         res.status(400).json('Post Failed');
     }
 }
