@@ -28,7 +28,7 @@ export default function TopicPage({ topics, user }) {
             <div className="header-bar">
                 <span className="header-name">{topic && topic.name}</span>
                 <span>Threads:{threads.length}</span>
-                {user && !user.isBanned ? <button className='btn' onClick={() => setShowForm(!showForm)}>ADD THREAD</button> : <div></div>}
+                {user && !user.isBanned ? <button className="btn" onClick={() => setShowForm(!showForm)}>ADD THREAD</button> : <div></div>}
             </div>
             {threads.length === 0 && <h1>No Threads Yet</h1>}
             {(showForm && user && !user.isBanned) && <ThreadForm topic={topic} />}

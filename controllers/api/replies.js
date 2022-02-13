@@ -1,5 +1,4 @@
 const Thread = require('../../models/thread');
-const User = require('../../models/user');
 
 module.exports = {
     create,

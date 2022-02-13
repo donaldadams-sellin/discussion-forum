@@ -13,12 +13,13 @@ export default function AuthPage({ setUser }) {
 
     return (
         <>
-            {/* <h1>AuthPage</h1> */}
+        <h1>Log In or Sign Up!</h1>
             <div className='form-container'>
                 <p>Returning user?  Log In!</p>
                 <LoginForm handleLogin={handleLogin} />
                 <p>New User? Sign Up!</p>
                 <SignUpForm handleLogin={handleLogin} />
+                <p>Requirements: Name: Less than 15 characters</p>
             </div>
         </>
     );

@@ -1,4 +1,4 @@
-.Reply{
+.Reply {
     border: 2px solid lightgray;
     width: 95%;
     min-height: 120px;
@@ -14,7 +14,7 @@
     word-wrap: break-word;
 }
 
-.reply-content{
+.reply-content {
     padding-left: 5px;
     overflow: auto;
     word-wrap: break-word;

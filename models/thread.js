@@ -4,7 +4,7 @@ const User = require('./user');
 
 const replySchema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: 'User' },
-    content: { type: String, required: true }
+    content: { type: String, required: true, maxlength: 5000 }
 }, {
     timestamps: true
 });
@@ -12,7 +12,7 @@ const replySchema = new Schema({
 const threadSchema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: 'User' },
     topic: { type: Schema.Types.ObjectId, ref: 'Topic' },
-    title: { type: String, required: true, maxLength: 30 },
+    title: { type: String, required: true, maxLength: 50 },
     replies: [replySchema]
 }, {
     timestamps: true,
@@ -38,15 +38,15 @@ threadSchema.statics.modifyReply = async function (req, del) {
     const user = await User.findById(req.user._id);
     if (user.equals(thread.replies.id(req.params.id).user) || user.isAdmin) {
         console.log('test2');
-        if(del){
+        if (del) {
             await thread.replies.id(req.params.id).remove();
-            if(thread.replies.length === 0){
+            if (thread.replies.length === 0) {
                 await thread.delete();
                 return null;
             }
         } else {
-            await thread.replies.id(req.params.id).set({content:req.body.content});
-            
+            await thread.replies.id(req.params.id).set({ content: req.body.content });
+
         }
         await thread.save();
     }

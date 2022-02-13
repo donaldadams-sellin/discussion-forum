@@ -3,7 +3,7 @@ import * as threadsAPI from '../../utilities/threads-api';
 
 
 export default function ReplyForm({ thread, setThread, setShowForm, replyData, setReplyData }) {
-    
+
     const [error, setError] = useState('')
 
     function handleChange(evt) {
@@ -15,18 +15,19 @@ export default function ReplyForm({ thread, setThread, setShowForm, replyData, s
 
     async function handleSubmit(evt) {
         evt.preventDefault();
-        try{
-        const threadId = thread._id
-        const updatedThread = await threadsAPI.addReply(replyData, threadId);
-        setThread(updatedThread);
-        setShowForm(false)
-        setReplyData('')
-        } catch {
-            setError('Post Failed')
+        try {
+            const threadId = thread._id
+            const updatedThread = await threadsAPI.addReply(replyData, threadId);
+            setThread(updatedThread);
+            setShowForm(false)
+            setReplyData({ ...replyData, [evt.target.name]: '' });
+        } catch (e) {
+            console.log(e);
+            setError(e.message);
         }
     }
 
-    function focus(evt){
+    function focus(evt) {
         evt.target.setSelectionRange(replyData.content.length, replyData.content.length);
         evt.target.scrollTop = evt.target.scrollHeight;
         evt.target.style.height = `${evt.target.scrollHeight}px`;
@@ -38,14 +39,15 @@ export default function ReplyForm({ thread, setThread, setShowForm, replyData, s
                 <label>Markdown is supported in replies!</label>
                 <br />
                 <textarea
-                className='thread-form-input'
-                value={replyData.content} 
-                name="content" 
-                cols="30" rows="10"
-                onChange={handleChange}
-                required
-                autoFocus
-                onFocus={focus}
+                    className="thread-form-input"
+                    value={replyData.content}
+                    name="content"
+                    cols="30" rows="10"
+                    onChange={handleChange}
+                    maxLength="5000"
+                    required
+                    autoFocus
+                    onFocus={focus}
                 />
                 <button type="submit">SUBMIT</button>
             </form>

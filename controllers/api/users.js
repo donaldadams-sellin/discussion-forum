@@ -15,11 +15,11 @@ async function create(req, res) {
         //create a token using user obj
         const token = createJWT(user);
         //use res.json to send back string
-        res.json(token);
-    } catch (err) {
+        res.json(token);ß
+    } catch {
         //client is looking for non-2xx status code
         //400 = Bad Request
-        res.status(400).json(err);
+        res.status(400).json('Sign Up Failed');
     }
 }
 
@@ -38,8 +38,8 @@ async function login(req, res) {
 async function ban(req, res) {
     try {
         const user = await User.findById(req.params.id)
-        if(!req.user.isAdmin || user.isAdmin){
-        throw new Error();
+        if (!req.user.isAdmin || user.isAdmin) {
+            throw new Error();
         }
         user.isBanned = !user.isBanned;
         await user.save();

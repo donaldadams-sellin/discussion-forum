@@ -10,22 +10,22 @@ export default function NavBar({ user, setUser }) {
 
     return (
         <>
-        <nav className='NavBar'>
-            <Link className='btn' to="/">Home</Link>
-            &nbsp; | &nbsp;
-            {user ?
-                <>
-                    <span>Welcome, {user.name}</span>
-                    {user.isBanned ? <> &nbsp; | &nbsp;<span style={{color:'red'}}>You are currently banned</span> </> : <div></div>}
-                    &nbsp; | &nbsp;
-                    <Link className='btn' onClick={handleLogOut} to="">Log Out</Link>
-                </>
-                :
-                <>
-                    <Link className='btn' to="/login">Log In and Sign Up</Link>
-                </>}
+            <nav className='NavBar'>
+                <Link className='btn' to="/">Home</Link>
+                &nbsp; | &nbsp;
+                {user ?
+                    <>
+                        <span>Welcome, {user.name}</span>
+                        {user.isBanned ? <> &nbsp; | &nbsp;<span style={{ color: 'red' }}>You are currently banned</span> </> : <div></div>}
+                        &nbsp; | &nbsp;
+                        <Link className='btn' onClick={handleLogOut} to="">Log Out</Link>
+                    </>
+                    :
+                    <>
+                        <Link className='btn' to="/login">Log In and Sign Up</Link>
+                    </>}
 
-        </nav>
+            </nav>
         </>
     );
 }

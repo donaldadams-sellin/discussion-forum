@@ -10,8 +10,8 @@ const topicSchema = new Schema({
     timestamps: true
 });
 
-topicSchema.pre('remove', async function(next){
-    await Thread.deleteMany({topic: this._id})
+topicSchema.pre('remove', async function (next) {
+    await Thread.deleteMany({ topic: this._id })
     next;
 })
 

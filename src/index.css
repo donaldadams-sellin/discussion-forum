@@ -17,7 +17,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 /* main content wrapper around everything besides nav-bar */
-.content{
+.content {
   padding-top: 50px;
   display: flex;
   flex-direction: column;
@@ -39,11 +39,11 @@ code {
   border-bottom-right-radius: 10px;
 }
 
-.even{
+.even { 
   background-color: rgb(30, 30, 30);
 }
 
-.odd{
+.odd {
   background-color: rgb(68, 68, 68);
 }
 

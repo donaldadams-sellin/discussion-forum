@@ -23,28 +23,28 @@ export default function SignUpForm({ handleLogin }) {
             delete submitData.confirm;
             const user = await signUp(submitData);
             handleLogin(user);
-        } catch {
-            setUserData({ ...userData, error: 'Sign Up Failed - Try Again' })
+        } catch (e) {
+            setUserData({ ...userData, error: e.message })
         }
     }
-        const disable = userData.password !== userData.confirm;
-        return (
-            <>
-                
-                    <form autoComplete="off" className="auth-form" onSubmit={handleSubmit}>
-                        <label>Name</label>
-                        <input type="text" name="name" value={userData.name} onChange={handleChange} required />
-                        <label>Email</label>
-                        <input type="email" name="email" value={userData.email} onChange={handleChange} required />
-                        <label>Password</label>
-                        <input type="password" name="password" value={userData.password} onChange={handleChange} required />
-                        <label>Confirm</label>
-                        <input type="password" name="confirm" value={userData.confirm} onChange={handleChange} required />
-                        <button type="submit" disabled={disable}>SIGN UP</button>
-                    </form>
-              
-                <p>&nbsp;{userData.error}</p>
-            </>
-        );
-    }
+    const disable = userData.password !== userData.confirm;
+    return (
+        <>
+
+            <form autoComplete="off" className="auth-form" onSubmit={handleSubmit}>
+                <label>Name</label>
+                <input type="text" name="name" maxLength="15" value={userData.name} onChange={handleChange} required />
+                <label>Email</label>
+                <input type="email" name="email" maxLength="25" value={userData.email} onChange={handleChange} required />
+                <label>Password</label>
+                <input type="password" name="password" value={userData.password} onChange={handleChange} required />
+                <label>Confirm</label>
+                <input type="password" name="confirm" value={userData.confirm} onChange={handleChange} required />
+                <button type="submit" disabled={disable}>SIGN UP</button>
+            </form>
+
+            <p>&nbsp;{userData.error}</p>
+        </>
+    );
+}
 

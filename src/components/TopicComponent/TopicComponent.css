@@ -1,20 +1,20 @@
-.TopicComponent{
+.TopicComponent {
     border: 2px solid rgb(119, 119, 119);
     width: 95%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.TopicName{
+.TopicName {
     font-weight: bolder;
     color: white;
     padding-left: 10px;
 }
 
-.TopicName:hover{
+.TopicName:hover {
     color: lightslategrey;
 }
 
-.TopicDescription{
+.TopicDescription {
     padding-left: 10px;
 }

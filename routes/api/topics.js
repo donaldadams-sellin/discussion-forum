@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const topicsCtrl = require('../../controllers/api/topics');
-const ensureLoggedIn =require('../../config/ensureLoggedIn');
-const checkAdmin =require('../../config/checkAdmin');
+const ensureLoggedIn = require('../../config/ensureLoggedIn');
+const checkAdmin = require('../../config/checkAdmin');
 
 //All routes prefixed with /api/topics
 

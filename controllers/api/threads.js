@@ -18,8 +18,7 @@ async function create(req, res) {
         const newThread = await Thread.makeThread(req.user._id, req.body.topicId, req.body.title, req.body.content);
         await newThread.populate('user', 'name')
         res.json(newThread);
-    } catch (e) {
-        console.log(e);
+    } catch {
         res.status(400).json('Post Failed');
     }
 }
@@ -31,7 +30,7 @@ async function deleteThread(req, res) {
         if (user.equals(thread.user) || user.isAdmin) {
             await thread.delete();
         }
-        const threads = await Thread.find({ topic: thread.topic }).populate('user', 'name');
+        const threads = await Thread.find({ topic: thread.topic }).sort('-updatedAt').populate('user', 'name isAdmin isBanned');
         res.json(threads);
     } catch {
         res.status(400).json('Delete Failed')

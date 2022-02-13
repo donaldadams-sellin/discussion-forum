@@ -22,22 +22,21 @@ export default function LoginForm({ handleLogin }) {
       // payload of the JSON Web Token (JWT)
       const user = await usersService.login(credentials);
       handleLogin(user);
-    } catch {
-      setError('Log In Failed - Try Again');
+    } catch (e) {
+      console.log(e);
+      setError(e.message);
     }
   }
 
   return (
     <>
-      
-        <form autoComplete="off" className="auth-form" onSubmit={handleSubmit}>
-          <label>Email</label>
-          <input type="text" name="email" value={credentials.email} onChange={handleChange} required />
-          <label>Password</label>
-          <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
-          <button type="submit">LOG IN</button>
-        </form>
-      
+      <form autoComplete="off" className="auth-form" onSubmit={handleSubmit}>
+        <label>Email</label>
+        <input type="text" name="email" maxLength="25" value={credentials.email} onChange={handleChange} required />
+        <label>Password</label>
+        <input type="password" name="password" value={credentials.password} onChange={handleChange} required />
+        <button type="submit">LOG IN</button>
+      </form>
       <p>{error}</p>
     </>
   );
