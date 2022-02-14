@@ -18,8 +18,7 @@ const threadSchema = new Schema({
     timestamps: true,
     toJSON: {
         virtuals: true
-    },
-    toObject: { virtuals: true }
+    }
 });
 
 //creates new thread from request
@@ -32,12 +31,11 @@ threadSchema.statics.makeThread = async function (userId, topicId, title, conten
     });
 }
 
-//either deletes or edits reply, depending on del parameter
+//either deletes or edits reply, depending on del parameter true or false value
 threadSchema.statics.modifyReply = async function (req, del) {
     const thread = await this.findOne({ 'replies._id': req.params.id });
     const user = await User.findById(req.user._id);
     if (user.equals(thread.replies.id(req.params.id).user) || user.isAdmin) {
-        console.log('test2');
         if (del) {
             await thread.replies.id(req.params.id).remove();
             if (thread.replies.length === 0) {
